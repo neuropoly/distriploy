@@ -2,7 +2,7 @@
 
 from setuptools import setup
 
-version = "0.13.0"
+version = "0.14"
 
 with open("README.rst", encoding="utf-8") as fi:
     readme = fi.read()
