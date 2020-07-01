@@ -4,7 +4,7 @@
 import sys, io, os, logging
 import argparse
 
-from .distriploy import release
+from .distriploy import get_cfg, release, mirror, postrelease
 
 
 logger = logging.getLogger(__name__)
@@ -53,8 +53,14 @@ def main(args_in=None):
      #format="%(asctime)-15s %(name)s %(levelname)s %(message)s"
     )
 
-    release_meta = release(args.repository, args.revision)
 
+    config = get_cfg(args.repository)
+
+    release_meta = release(args.repository, args.revision, config)
+
+    mirror_metas = mirror(args.repository, args.revision, config, release_meta)
+
+    postrelease_meta = postrelease(args.repository, args.revision, config, release_meta, mirror_metas)
 
 
 if __name__ == "__main__":
