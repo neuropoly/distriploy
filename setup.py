@@ -26,7 +26,7 @@ setup(
     include_package_data=True,
     python_requires=">=3.6",
     install_requires=[],
-    extra_require={
+    extras_require={
      "osf": ["osfclient"],
     },
     license="MIT",
