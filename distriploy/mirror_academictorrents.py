@@ -31,7 +31,7 @@ def mirror(repo_path, config, release_meta):
      "-s", torrent, basename,
     ]
 
-    subprocess.run(cmd, cwd=dirname)
+    subprocess.run(cmd, cwd=dirname, stdout=subprocess.PIPE)
 
     logger.info("Register torrent %s", torrent)
 
