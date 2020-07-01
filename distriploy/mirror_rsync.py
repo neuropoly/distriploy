@@ -8,7 +8,7 @@ import subprocess
 logger = logging.getLogger(__name__)
 
 
-def mirror(repo_path, revision, config, release_meta):
+def mirror(repo_path, config, release_meta):
     """
     """
 

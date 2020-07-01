@@ -40,7 +40,7 @@ def release(repo_path, revision, config):
         raise
 
 
-def mirror(repo_path, revision, config, release_meta):
+def mirror(repo_path, config, release_meta):
     """
     Handle mirroring of a release.
     """
@@ -58,7 +58,7 @@ def mirror(repo_path, revision, config, release_meta):
             continue
 
         try:
-            mirror_meta = mod.mirror(repo_path, revision, info, release_meta)
+            mirror_meta = mod.mirror(repo_path, info, release_meta)
             mirror_metas[mirror] = mirror_meta
         except Exception as e:
             logger.exception("Error running %s: %s", mirror_method_name, e)
@@ -67,7 +67,7 @@ def mirror(repo_path, revision, config, release_meta):
     return mirror_metas
 
 
-def postrelease(repo_path, revision, config, release_meta, mirror_metas):
+def postrelease(repo_path, config, release_meta, mirror_metas):
     """
     """
     postrelease_meta = dict()

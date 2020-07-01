@@ -5,7 +5,7 @@
 from .osf import *
 
 
-def mirror(repo_path, revision, config, release_meta):
+def mirror(repo_path, config, release_meta):
     """
     """
     ret = dict()

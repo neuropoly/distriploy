@@ -58,9 +58,9 @@ def main(args_in=None):
 
     release_meta = release(args.repository, args.revision, config)
 
-    mirror_metas = mirror(args.repository, args.revision, config, release_meta)
+    mirror_metas = mirror(args.repository, config, release_meta)
 
-    postrelease_meta = postrelease(args.repository, args.revision, config, release_meta, mirror_metas)
+    postrelease_meta = postrelease(args.repository, config, release_meta, mirror_metas)
 
 
 if __name__ == "__main__":

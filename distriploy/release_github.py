@@ -38,6 +38,7 @@ def release(repo_path, revision, cfg_root) -> dict:
 
     ret["release_id"] = release_id
 
+    ret["revision"] = git_tag
 
     tmpdir = "."
     local_path = download_default_release_asset(github_repo, release_id, github_token, tmpdir)
