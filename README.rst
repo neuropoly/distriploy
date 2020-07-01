@@ -4,16 +4,42 @@ Distriploy
 
 This tool can assist you to perform deployment of release artifacts.
 
+
 Usage
 #####
 
-Typically called from your repo using:
+After its `installation`_, distriploy is typically called from your repo's
+root folder using:
+
+.. code:: sh
+
+   distriploy
+
+or:
 
 .. code:: sh
 
    python -m distriploy
 
 The repo should have been configured prior to that, see `configuration`_.
+
+
+Run it with `--help` to get to know the options.
+
+
+Installation
+############
+
+
+distriploy is available on pypi:
+
+.. code:: sh
+
+   python -m pip install --user distriploy
+
+
+or you can grab a release or clone the repository and use it.
+
 
 
 Configuration
@@ -104,6 +130,17 @@ The file is YAML, it contains an object with the following members:
          export ACADEMICTORRENTS_USERNAME ACADEMICTORRENTS_PASSWORD
 
       Or add it to an environment file *not under revision control*.
+
+
+TODO
+####
+
+- get some use and feedback
+
+- support plug-ins found in the repository (vs. currently only those
+  that are distributed with the tool)
+
+
 
 
 License
