@@ -9,6 +9,7 @@ import yaml
 
 logger = logging.getLogger(__name__)
 
+
 def get_cfg(repo_path):
 
     config_path = os.path.join(repo_path, ".distriploy.yml")
