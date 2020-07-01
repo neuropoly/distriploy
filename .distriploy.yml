@@ -1,6 +1,5 @@
 release:
   method: github
-  add_mirror_urls: true
 
 mirrors:
 
@@ -20,3 +19,6 @@ mirrors:
       authors: distriploy team
       descr: "@article{title = {Distroploy}, author = {Distriploy authors}, abstract = {Distriploy is a small tool handling release deployment}}"
     add_other_mirror_urls: true
+
+postrelease:
+  add_mirror_urls: true
