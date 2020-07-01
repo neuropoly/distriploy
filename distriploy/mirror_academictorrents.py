@@ -67,7 +67,7 @@ def mirror(repo_path, revision, config, release_meta):
         ret["infohash"] = infohash
         ret["urls"] = [
          f"https://academictorrents.com/download/{infohash}.torrent",
-         f"magnet:?xt=urn:btih:{infohash]&tr=http%3A%2F%2Facademictorrents.com%2Fannounce.php&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969",
+         f"magnet:?xt=urn:btih:{infohash}&tr=http%3A%2F%2Facademictorrents.com%2Fannounce.php&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969",
         ]
 
     return ret
