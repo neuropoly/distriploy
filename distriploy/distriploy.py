@@ -53,10 +53,15 @@ def mirror(repo_path, revision, config, release_meta):
 
         try:
             mod = importlib.import_module(".mirror_{}".format(mirror_method_name), package=__package__)
+        except Exception as e:
+            logger.exception("Error importing %s: %s", mirror_method_name, e)
+            continue
+
+        try:
             mirror_meta = mod.mirror(repo_path, revision, info, release_meta)
             mirror_metas[mirror] = mirror_meta
         except Exception as e:
-            logger.exception("Error importing %s: %s", mirror_method_name, e)
+            logger.exception("Error running %s: %s", mirror_method_name, e)
             continue
 
     return mirror_metas
