@@ -91,6 +91,19 @@ The file is YAML, it contains an object with the following members:
 
     - `params`: object, academictorrents upload params, to be POST'ed
 
+    - Environment variables `ACADEMICTORRENTS_USERNAME` and
+      `ACADEMICTORRENTS_PASSWORD`, must be populated by user,
+      they come from uid & pass in https://academictorrents.com/about.php#apikeys
+
+      Set it up with eg.:
+
+      .. code:: sh
+
+         read ACADEMICTORRENTS_USERNAME ACADEMICTORRENTS_PASSWORD
+         export ACADEMICTORRENTS_USERNAME ACADEMICTORRENTS_PASSWORD
+
+      Or add it to an environment file *not under revision control*.
+
 
 License
 #######
