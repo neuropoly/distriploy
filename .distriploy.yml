@@ -11,6 +11,7 @@ mirrors:
   neuropoly:
     method: rsync
     remote: exmakhina.com:/var/www/exmakhina.com/distriploy/
+    public: https://exmakhina.com/distriploy
 
   academictorrents:
     method: academictorrents
