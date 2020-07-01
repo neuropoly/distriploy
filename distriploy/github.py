@@ -180,7 +180,8 @@ def update_release_with_mirror_urls(github_repo, release_id, gh_token, urls):
                 "Bad response: {} / {}".format(resp.getcode(), resp.read())
             )
         ret = json.loads(resp.read().decode("utf-8"))
-        logger.debug("ret: %s", ret)
+
+    return ret
 
 def get_org_repos(org):
     url = f"https://api.github.com/orgs/{org}/repos"

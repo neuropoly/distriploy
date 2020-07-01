@@ -70,7 +70,6 @@ def mirror(repo_path, config, release_meta):
 def postrelease(repo_path, config, release_meta, mirror_metas):
     """
     """
-    postrelease_meta = dict()
 
     all_urls = list()
     for mirror, mirror_meta in mirror_metas.items():
@@ -83,17 +82,19 @@ def postrelease(repo_path, config, release_meta, mirror_metas):
             logger.info("- %s", url)
 
     cfg_release = config["release"]
+
     cfg_postrelease = config["postrelease"]
 
     release_method_name = cfg_release["method"]
 
     try:
         mod = importlib.import_module(".release_{}".format(release_method_name), package=__package__)
-        return mod.postrelease(repo_path, cfg_postrelease, release_meta, mirror_metas)
     except Exception as e:
         logger.exception("Error importing %s: %s", release_method_name, e)
         raise
 
-    postrelease_meta["urls"] = all_urls
+    postrelease_meta = mod.postrelease(repo_path, cfg_postrelease, release_meta, mirror_metas)
+
+    postrelease_meta["urls"] = [release_meta["artifact_url"]] + all_urls
 
     return postrelease_meta

@@ -60,7 +60,9 @@ def main(args_in=None):
 
     try:
         import coloredlogs
-        coloredlogs.install()
+        coloredlogs.install(
+         level=getattr(logging, args.log_level),
+        )
     except ImportError:
         pass
 

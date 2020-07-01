@@ -67,4 +67,6 @@ def postrelease(repo_path, cfg_root, release_meta, mirror_metas):
         urls = mirror_meta["urls"]
         all_urls += urls
 
-    return update_release_with_mirror_urls(github_repo, release_id, github_token, all_urls)
+    update_release_with_mirror_urls(github_repo, release_id, github_token, all_urls)
+
+    return {}
