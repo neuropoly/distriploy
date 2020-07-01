@@ -43,10 +43,10 @@ def release(repo_path, revision, cfg_root) -> dict:
     local_path = download_default_release_asset(github_repo, release_id, github_token, tmpdir)
     ret["artifact_path"] = local_path
 
-    if not releases[release_id]["assets"]:
-        url = upload_release_asset(github_repo, release_id, local_path, github_token)
-    else:
+    if release_id in releases and releases[release_id]["assets"]:
         url = releases[release_id]["assets"][0]["browser_download_url"]
+    else:
+        url = upload_release_asset(github_repo, release_id, local_path, github_token)
 
     ret["artifact_url"] = url
 
