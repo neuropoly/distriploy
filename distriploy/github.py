@@ -19,6 +19,7 @@ __all__ = (
  "download_default_release_asset",
  "upload_release_asset",
  "update_release_with_mirror_urls",
+ "get_repo_releases",
 )
 
 
@@ -219,3 +220,14 @@ def get_repo_tags(github_repo):
         logger.debug("ret: %s", ret)
 
         return [ tag["name"] for tag in ret ]
+
+def get_repo_releases(github_repo):
+    url = f"https://api.github.com/repos/{github_repo}/releases"
+    req = urllib.request.Request(url)
+
+    with urllib.request.urlopen(req) as resp:
+        if resp.getcode() != 200:
+            msg = "Bad response: {} / {}".format(resp.getcode(), resp.read())
+            raise RuntimeError(msg)
+        ret = json.loads(resp.read().decode("utf-8"))
+        return { rel["tag_name"]: rel["id"] for rel in ret }, { rel["id"]: rel for rel in ret }
