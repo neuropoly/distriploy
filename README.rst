@@ -110,3 +110,17 @@ License
 #######
 
 `MIT <LICENSE>`_.
+
+
+Releasing
+#########
+
+.. code:: sh
+
+   read version # eg. 0.14
+   sed -i -e 's/^version = .*/version = "'${version}'"/g' setup.py
+   git add setup.py
+   git commit -m "preparation for v${version}"
+   git tag --annotate --message "" v${version}
+   git push; git push --tags
+   rm -rf dist; python setup.py sdist && twine upload dist/* -r pypi
