@@ -20,7 +20,7 @@ Configuration
 #############
 
 An enabled repository has a `.distriploy.yml` file in its root folder.
-
+See `this repo's <.distriploy.yml>`_ for inspiration.
 
 The file is YAML, it contains an object with the following members:
 
@@ -80,6 +80,7 @@ The file is YAML, it contains an object with the following members:
     Additional info may be provided if so:
 
     - `remote`: string, rsync destination
+    - `public`: string, public URI prefix, accessible once upload is completed
 
   - `academictorrents`: create torrent file, and upload to https://academictorrents.com
 
