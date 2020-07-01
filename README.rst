@@ -11,7 +11,7 @@ Typically called from your repo using:
 
 .. code:: sh
 
-   python -m distriploy release
+   python -m distriploy
 
 The repo should have been configured prior to that, see `configuration`_.
 
