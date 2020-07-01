@@ -29,13 +29,25 @@ def release(repo_path, revision, cfg_root) -> dict:
 
     github_repo = get_remote(repo_path, cfg_root)
 
-    ret["release_id"] = release_id = create_release(github_repo, git_tag, github_token, cfg_root)
+    tag2id, releases = get_repo_releases(github_repo)
+
+    if git_tag in tag2id:
+        release_id = tag2id[git_tag]
+    else:
+        release_id = create_release(github_repo, git_tag, github_token, cfg_root)
+
+    ret["release_id"] = release_id
+
 
     tmpdir = "."
     local_path = download_default_release_asset(github_repo, release_id, github_token, tmpdir)
     ret["artifact_path"] = local_path
 
-    url = upload_release_asset(github_repo, release_id, local_path, github_token)
+    if not releases[release_id]["assets"]:
+        url = upload_release_asset(github_repo, release_id, local_path, github_token)
+    else:
+        url = releases[release_id]["assets"][0]["browser_download_url"]
+
     ret["artifact_url"] = url
 
     return ret
