@@ -16,7 +16,7 @@ setup(
     version=version,
     description=("Release deployment utility"),
     long_description=readme,
-    long_description_content_type="text/restructured",
+    long_description_content_type="text/x-rst",
     author="Jérôme Carretero",
     author_email="cJ-py-spam@zougloub.eu",
     url="https://github.com/exmakhina/distriploy",
