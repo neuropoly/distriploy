@@ -55,9 +55,7 @@ def main(args_in=None):
 
     release_meta = release(args.repository, args.revision)
 
-    mirror_metas = mirror(release_meta)
 
-    #post_release(repo_path
 
 if __name__ == "__main__":
     ret = main()
