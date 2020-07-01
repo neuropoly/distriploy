@@ -72,4 +72,27 @@ def postrelease(repo_path, config, release_meta, mirror_metas):
     """
     postrelease_meta = dict()
 
+    all_urls = list()
+    for mirror, mirror_meta in mirror_metas.items():
+        urls = mirror_meta["urls"]
+        all_urls += urls
+
+    if all_urls:
+        logger.info("All URLs:")
+        for url in all_urls:
+            logger.info("- %s", url)
+
+    cfg_release = config["release"]
+    cfg_postrelease = config["postrelease"]
+
+    release_method_name = cfg_release["method"]
+
+    try:
+        mod = importlib.import_module(".release_{}".format(release_method_name), package=__package__)
+        return mod.postrelease(repo_path, cfg_postrelease, release_meta, mirror_metas)
+    except Exception as e:
+        logger.exception("Error importing %s: %s", release_method_name, e)
+        raise
+
+
     return postrelease_meta

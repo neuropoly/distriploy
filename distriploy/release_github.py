@@ -54,7 +54,7 @@ def release(repo_path, revision, cfg_root) -> dict:
     return ret
 
 
-def post_release(repo_path, revision, cfg_root, release_meta, mirror_metas):
+def postrelease(repo_path, cfg_root, release_meta, mirror_metas):
 
     github_token = os.environ["GITHUB_TOKEN"]
 
@@ -63,7 +63,7 @@ def post_release(repo_path, revision, cfg_root, release_meta, mirror_metas):
     release_id = release_meta["release_id"]
 
     all_urls = list()
-    for mirror_meta in mirror_metas:
+    for mirror, mirror_meta in mirror_metas.items():
         urls = mirror_meta["urls"]
         all_urls += urls
 
