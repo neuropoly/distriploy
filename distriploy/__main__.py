@@ -29,7 +29,13 @@ def get_parser():
      help="logger level (eg. INFO, see Python logger docs)",
     )
 
-    parser.add_argument("command",
+    subparsers = parser.add_subparsers(
+     help='the command; type "%s COMMAND -h" for command-specific help' % sys.argv[0],
+     dest='command',
+    )
+
+    subp = subparsers.add_parser("release",
+     help="Release",
     )
 
     return parser
