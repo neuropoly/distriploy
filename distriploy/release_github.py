@@ -31,10 +31,11 @@ def release(repo_path, revision, cfg_root) -> dict:
 
     ret["release_id"] = release_id = create_release(github_repo, git_tag, github_token, cfg_root)
 
-    with tempfile.TemporaryDirectory() as tmpdir:
-        default_asset_path = download_default_release_asset(github_repo, release_id, github_token, tmpdir)
-        url = upload_release_asset(github_repo, release_id, default_asset_path, github_token)
-        ret["url"] = url
+    tmpdir = "."
+    local_path = download_default_release_asset(github_repo, release_id, github_token, tmpdir)
+    ret["artifact_path"] = local_path
+    url = upload_release_asset(github_repo, release_id, default_asset_path, github_token)
+    ret["artifact_url"] = url
 
     return ret
 
@@ -51,6 +52,5 @@ def post_release(repo_path, revision, cfg_root, release_meta, mirror_metas):
     for mirror_meta in mirror_metas:
         urls = mirror_meta["urls"]
         all_urls += urls
-
 
     return update_release_with_mirror_urls(github_repo, release_id, github_token, all_urls)
