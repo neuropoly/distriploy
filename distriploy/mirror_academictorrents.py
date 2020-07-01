@@ -43,6 +43,7 @@ def mirror(repo_path, revision, config, release_meta):
     b64_torrent = base64.b64encode(data).decode()
 
     post_params = config["params"].copy()
+    post_params["name"] = "{} (revision: {})".format(post_params["name"], revision)
     post_params["uid"] = username
     post_params["pass"] = password
     post_params["file"] = b64_torrent
