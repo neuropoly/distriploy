@@ -34,7 +34,8 @@ def release(repo_path, revision, cfg_root) -> dict:
     tmpdir = "."
     local_path = download_default_release_asset(github_repo, release_id, github_token, tmpdir)
     ret["artifact_path"] = local_path
-    url = upload_release_asset(github_repo, release_id, default_asset_path, github_token)
+
+    url = upload_release_asset(github_repo, release_id, local_path, github_token)
     ret["artifact_url"] = url
 
     return ret
