@@ -107,7 +107,11 @@ def download_default_release_asset(github_repo, release_id, gh_token, target_dir
         ret = json.loads(resp.read().decode("utf-8"))
         logger.debug("ret: %s", ret)
 
-        downloaded_asset_path = os.path.join(target_dir, ret["tag_name"] + ".zip")
+        pnpv = "{}-{}".format(github_repo.split("/")[-1], ret["tag_name"])
+
+        asset_name = f"{pnpv}.zip"
+
+        downloaded_asset_path = os.path.join(target_dir, asset_name)
 
         urllib.request.urlretrieve(
          ret["zipball_url"], downloaded_asset_path, #reporthook=...
