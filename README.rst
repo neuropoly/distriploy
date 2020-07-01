@@ -124,3 +124,5 @@ Releasing
    git tag --annotate --message "" v${version}
    git push; git push --tags
    rm -rf dist; python setup.py sdist && twine upload dist/* -r pypi
+   python -m distriploy
+
