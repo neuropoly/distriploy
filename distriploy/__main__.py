@@ -55,8 +55,8 @@ def main(args_in=None):
 
     logging.basicConfig(
      level=getattr(logging, args.log_level),
-     #datefmt="%Y%m%dT%H%M%S",
-     #format="%(asctime)-15s %(name)s %(levelname)s %(message)s"
+     datefmt="%Y%m%dT%H%M%S",
+     format="%(asctime)-15s %(name)s %(levelname)s %(message)s"
     )
 
 
