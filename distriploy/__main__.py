@@ -3,6 +3,7 @@
 
 import sys, io, os, logging
 import argparse
+import json
 
 from .distriploy import get_cfg, release, mirror, postrelease
 
@@ -25,7 +26,7 @@ def get_parser():
     )
 
     parser.add_argument("--log-level",
-     default="INFO",
+     default="WARNING",
      help="logger level (eg. INFO, see Python logger docs)",
     )
 
@@ -55,10 +56,13 @@ def main(args_in=None):
 
     logging.basicConfig(
      level=getattr(logging, args.log_level),
-     datefmt="%Y%m%dT%H%M%S",
-     format="%(asctime)-15s %(name)s %(levelname)s %(message)s"
     )
 
+    try:
+        import coloredlogs
+        coloredlogs.install()
+    except ImportError:
+        pass
 
     config = get_cfg(args.repository)
 
@@ -68,6 +72,8 @@ def main(args_in=None):
 
     postrelease_meta = postrelease(args.repository, config, release_meta, mirror_metas)
 
+    root = json.dumps(postrelease_meta["urls"])
+    print(root)
 
 if __name__ == "__main__":
     ret = main()

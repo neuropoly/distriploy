@@ -94,5 +94,6 @@ def postrelease(repo_path, config, release_meta, mirror_metas):
         logger.exception("Error importing %s: %s", release_method_name, e)
         raise
 
+    postrelease_meta["urls"] = all_urls
 
     return postrelease_meta
