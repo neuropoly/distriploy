@@ -17,4 +17,7 @@ def mirror(repo_path, config, release_meta):
     cmd = ["rsync", release_meta["artifact_path"], config["remote"]]
     subprocess.run(cmd)
 
+    dirname, basename = os.path.split(release_meta["artifact_path"])
+    ret["urls"] = ["/".join((config["public"], basename))]
+
     return ret
