@@ -23,8 +23,13 @@ or:
 
 The repo should have been configured prior to that, see `configuration`_.
 
-
 Run it with `--help` to get to know the options.
+
+Prior to running `distriploy`, you might want to create a custom tag. It will be used to name the release. E.g.:
+
+.. code:: sh
+
+   git tag -s r$(date +%Y%m%d)
 
 
 Installation
