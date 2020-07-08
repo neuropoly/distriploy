@@ -110,8 +110,7 @@ The file is YAML, it contains an object with the following members:
       Useful if using OSF's revision system.
 
     - Environment variables `OSF_USERNAME` and
-      `OSF_PASSWORD`, must be populated by user,
-      they come from uid & pass in https://academictorrents.com/about.php#apikeys
+      `OSF_PASSWORD`.
 
       Set it up with eg.:
 
