@@ -13,7 +13,7 @@ distriploy is available on `pypi <https://pypi.org/project/distriploy/>`_:
 
 .. code:: sh
 
-   python -m pip install --user distriploy
+   pip install distriploy
 
 
 or you can grab a release or clone the repository and use it.
