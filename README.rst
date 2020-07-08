@@ -9,7 +9,7 @@ Installation
 ############
 
 
-distriploy is available on pypi:
+distriploy is available on `pypi <https://pypi.org/project/distriploy/>`_:
 
 .. code:: sh
 
