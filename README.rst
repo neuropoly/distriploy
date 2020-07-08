@@ -69,13 +69,18 @@ The file is YAML, it contains an object with the following members:
       contains a token string created from
       https://github.com/settings/tokens
 
-      Set it up each time with eg.:
+      You can either set it up each time with eg. (the syntax below does not leave trace in the bash history):
 
       .. code:: sh
 
-         export GITHUB_TOKEN=your_github_token
+         read GITHUB_TOKEN
+         export GITHUB_TOKEN
 
       Or add it to an environment file *not under revision control*, such as in your `.bashrc`.
+      
+      .. code:: sh
+      
+         export GITHUB_TOKEN=your_github_token
 
 - `mirrors`: mirroring information object, containing members whose
   key is a mirror handle.
