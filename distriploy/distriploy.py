@@ -11,6 +11,9 @@ logger = logging.getLogger(__name__)
 
 
 def get_cfg(repo_path):
+    """
+    Parse distriploy config
+    """
 
     config_path = os.path.join(repo_path, ".distriploy.yml")
 
@@ -23,6 +26,24 @@ def get_cfg(repo_path):
     return yaml.safe_load(data)
 
 
+def get_module(name, module_type):
+    """
+    Get a plug-in module
+    """
+
+    modname = ".{}_{}".format(module_type, name)
+    try:
+        return importlib.import_module(modname, package=__package__)
+    except ModuleNotFoundError:
+        pass
+
+    modname = "distriploy_{}_{}".format(module_type, name)
+    try:
+        return importlib.import_module(modname)
+    except ModuleNotFoundError:
+        raise
+
+
 def release(repo_path, revision, config):
     """
     Handle a release
@@ -32,12 +53,9 @@ def release(repo_path, revision, config):
 
     release_method_name = cfg_release["method"]
 
-    try:
-        mod = importlib.import_module(".release_{}".format(release_method_name), package=__package__)
-        return mod.release(repo_path, revision, cfg_release)
-    except Exception as e:
-        logger.exception("Error importing %s: %s", release_method_name, e)
-        raise
+    mod = get_module(release_method_name, "release")
+
+    return mod.release(repo_path, revision, cfg_release)
 
 
 def mirror(repo_path, config, release_meta):
@@ -52,9 +70,14 @@ def mirror(repo_path, config, release_meta):
         mirror_method_name = info["method"]
 
         try:
-            mod = importlib.import_module(".mirror_{}".format(mirror_method_name), package=__package__)
+            mod = get_module(mirror_method_name, "mirror")
+        except ModuleNotFoundError as e:
+            logger.exception("Mirroring plug-in %s (%s) not found, skipping",
+             mirror, mirror_method_name)
+            continue
         except Exception as e:
-            logger.exception("Error importing %s: %s", mirror_method_name, e)
+            logger.exception("Error importing mirroring plug-in %s (%s): %s",
+             mirror, mirror_method_name, e)
             continue
 
         try:
@@ -69,7 +92,10 @@ def mirror(repo_path, config, release_meta):
 
 def postrelease(repo_path, config, release_meta, mirror_metas):
     """
+    Call postrelease() in release module.
     """
+
+    postrelease_meta = dict()
 
     all_urls = list()
     for mirror, mirror_meta in mirror_metas.items():
@@ -88,13 +114,19 @@ def postrelease(repo_path, config, release_meta, mirror_metas):
     release_method_name = cfg_release["method"]
 
     try:
-        mod = importlib.import_module(".release_{}".format(release_method_name), package=__package__)
+        mod = get_module(release_method_name, "release")
     except Exception as e:
         logger.exception("Error importing %s: %s", release_method_name, e)
         raise
 
-    postrelease_meta = mod.postrelease(repo_path, cfg_postrelease, release_meta, mirror_metas)
+    postrelease = getattr(mod, "postrelease", None)
+    if postrelease is not None:
+        postrelease_meta = postrelease(repo_path, cfg_postrelease, release_meta, mirror_metas)
 
-    postrelease_meta["urls"] = [release_meta["artifact_url"]] + all_urls
+
+    postrelease_meta["urls"] = all_urls
+
+    if "artifact_url" in release_meta:
+       postrelease_meta["urls"] = [release_meta["artifact_url"]] + all_urls
 
     return postrelease_meta

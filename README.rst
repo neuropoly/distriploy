@@ -159,10 +159,6 @@ TODO
 
 - get some use and feedback
 
-- support plug-ins found in the repository (vs. currently only those
-  that are distributed with the tool)
-
-
 
 
 License
