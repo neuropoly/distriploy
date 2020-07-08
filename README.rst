@@ -96,6 +96,9 @@ The file is YAML, it contains an object with the following members:
 
   - `osf`: upload to https://osf.io
 
+    Use requires installation with `osf` option, or subsequent
+    installation of the `osfclient` dependency.
+
     Additional info may be provided if so:
 
     - `project`: string, OSF project key
@@ -105,6 +108,20 @@ The file is YAML, it contains an object with the following members:
     - `name`: string, optional (defaults to release artifact name)
 
       Useful if using OSF's revision system.
+
+    - Environment variables `OSF_USERNAME` and
+      `OSF_PASSWORD`, must be populated by user,
+      they come from uid & pass in https://academictorrents.com/about.php#apikeys
+
+      Set it up with eg.:
+
+      .. code:: sh
+
+         read OSF_USERNAME OSF_PASSWORD
+         export OSF_USERNAME OSF_PASSWORD
+
+      Or add it to an environment file *not under revision control*.
+
 
   - `rsync`: upload with rsync
 
