@@ -5,6 +5,20 @@ Distriploy
 This tool can assist you to perform deployment of release artifacts.
 
 
+Installation
+############
+
+
+distriploy is available on pypi:
+
+.. code:: sh
+
+   python -m pip install --user distriploy
+
+
+or you can grab a release or clone the repository and use it.
+
+
 Usage
 #####
 
@@ -30,20 +44,6 @@ Prior to running `distriploy`, you might want to create a custom tag. It will be
 .. code:: sh
 
    git tag -s r$(date +%Y%m%d)
-
-
-Installation
-############
-
-
-distriploy is available on pypi:
-
-.. code:: sh
-
-   python -m pip install --user distriploy
-
-
-or you can grab a release or clone the repository and use it.
 
 
 
