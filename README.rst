@@ -5,36 +5,8 @@ Distriploy
 This tool can assist you to perform deployment of release artifacts.
 
 
-Usage
-#####
-
-After its `installation`_, distriploy is typically called from your repo's
-root folder using:
-
-.. code:: sh
-
-   distriploy
-
-or:
-
-.. code:: sh
-
-   python -m distriploy
-
-The repo should have been configured prior to that, see `configuration`_.
-
-Run it with `--help` to get to know the options.
-
-Prior to running `distriploy`, you might want to create a custom tag. It will be used to name the release. E.g.:
-
-.. code:: sh
-
-   git tag -s r$(date +%Y%m%d)
-
-
 Installation
 ############
-
 
 distriploy is available on pypi:
 
@@ -46,11 +18,14 @@ distriploy is available on pypi:
 or you can grab a release or clone the repository and use it.
 
 
-
 Configuration
 #############
 
-An enabled repository has a `.distriploy.yml` file in its root folder.
+Before starting using `distriploy`, you need to make sure that:
+
+- The repository you'd like to make a release of has been cloned with ssh (not https);
+- The repository contains a `.distriploy.yml` file in its root folder.
+
 See `this repo's <.distriploy.yml>`_ for inspiration.
 
 The file is YAML, it contains an object with the following members:
@@ -151,6 +126,34 @@ The file is YAML, it contains an object with the following members:
          export ACADEMICTORRENTS_USERNAME ACADEMICTORRENTS_PASSWORD
 
       Or add it to an environment file *not under revision control*.
+
+
+Usage
+#####
+
+The repo should have been configured prior to that, see `configuration`_.
+
+After its `installation`_, distriploy is typically called from your repo's
+root folder using:
+
+.. code:: sh
+
+   distriploy
+
+or:
+
+.. code:: sh
+
+   python -m distriploy
+
+Run it with `--help` to get to know the options.
+
+Prior to running `distriploy`, you might want to create a custom tag. It will be used to name the release. E.g.:
+
+.. code:: sh
+
+   git tag -s r$(date +%Y%m%d)
+
 
 
 TODO
