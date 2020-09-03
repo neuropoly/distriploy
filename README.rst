@@ -21,33 +21,33 @@ or you can grab a release or clone the repository and use it.
 Configuration
 #############
 
-Before starting using `distriploy`, you need to make sure that:
+Before starting using ``distriploy``, you need to make sure that:
 
 - The repository you'd like to make a release of has been cloned with ssh (not https);
-- The repository contains a `.distriploy.yml` file in its root folder.
+- The repository contains a ``.distriploy.yml`` file in its root folder.
 
 See `this repo's <.distriploy.yml>`_ for inspiration.
 
 The file is YAML, it contains an object with the following members:
 
-- `release`: release information object
-- `release.method`: release method. Supported values are:
+- ``release``: release information object
+- ``release.method``: release method. Supported values are:
 
-  - `github`: the project has a github repo.
+  - ``github``: the project has a github repo.
 
     Additional info may be provided if so:
 
-    - `release.remote`: string, optional (defaults to `origin`)
+    - ``release.remote``: string, optional (defaults to ``origin``)
 
       The local git repo remote corresponding to github.
 
-    - `postrelease.add_mirror_urls`: bool (defaults to `false`)
+    - ``postrelease.add_mirror_urls``: bool (defaults to ``false``)
 
       Whether to add to the release description a list of mirrors.
       Limited use because if github is down, the list is not
       accessible.
 
-    - Environment variable `GITHUB_TOKEN`, must be populated by user,
+    - Environment variable ``GITHUB_TOKEN``, must be populated by user,
       contains a token string created from
       https://github.com/settings/tokens
 
@@ -61,31 +61,31 @@ The file is YAML, it contains an object with the following members:
       Or add it to an environment file *not under revision control*.
 
 
-- `mirrors`: mirroring information object, containing members whose
+- ``mirrors``: mirroring information object, containing members whose
   key is a mirror handle.
 
   Each entry contains:
 
-  `mirrors.${mirror}.method`: mirroring upload method. Supported
+  ``mirrors.${mirror}.method``: mirroring upload method. Supported
   values (unsupported are ignored, with a warning) are (TODO):
 
-  - `osf`: upload to https://osf.io
+  - ``osf``: upload to https://osf.io
 
-    Use requires installation with `osf` option, or subsequent
-    installation of the `osfclient` dependency.
+    Use requires installation with ``osf`` option, or subsequent
+    installation of the ``osfclient`` dependency.
 
     Additional info may be provided if so:
 
-    - `project`: string, OSF project key
+    - ``project``: string, OSF project key
 
-    - `folder`: string, OSF file folder
+    - ``folder``: string, OSF file folder
 
-    - `name`: string, optional (defaults to release artifact name)
+    - ``name``: string, optional (defaults to release artifact name)
 
       Useful if using OSF's revision system.
 
-    - Environment variables `OSF_USERNAME` and
-      `OSF_PASSWORD`.
+    - Environment variables ``OSF_USERNAME`` and
+      ``OSF_PASSWORD``.
 
       Set it up with eg.:
 
@@ -97,25 +97,25 @@ The file is YAML, it contains an object with the following members:
       Or add it to an environment file *not under revision control*.
 
 
-  - `rsync`: upload with rsync
+  - ``rsync``: upload with rsync
 
     Additional info may be provided if so:
 
-    - `remote`: string, rsync destination
-    - `public`: string, public URI prefix, accessible once upload is completed
+    - ``remote``: string, rsync destination
+    - ``public``: string, public URI prefix, accessible once upload is completed
 
-  - `academictorrents`: create torrent file, and upload to https://academictorrents.com
+  - ``academictorrents``: create torrent file, and upload to https://academictorrents.com
 
     The torrent file will be generated in cwd, named like the release
-    artifact and added`.torrent` extension.
+    artifact and added ``.torrent`` extension.
 
 
     Additional info may be provided if so:
 
-    - `params`: object, academictorrents upload params, to be POST'ed
+    - ``params``: object, academictorrents upload params, to be POST'ed
 
-    - Environment variables `ACADEMICTORRENTS_USERNAME` and
-      `ACADEMICTORRENTS_PASSWORD`, must be populated by user,
+    - Environment variables ``ACADEMICTORRENTS_USERNAME`` and
+      ``ACADEMICTORRENTS_PASSWORD``, must be populated by user,
       they come from uid & pass in https://academictorrents.com/about.php#apikeys
 
       Set it up with eg.:
@@ -146,9 +146,9 @@ or:
 
    python -m distriploy
 
-Run it with `--help` to get to know the options.
+Run it with ``--help`` to get to know the options.
 
-Prior to running `distriploy`, you might want to create a custom tag. It will be used to name the release. E.g.:
+Prior to running ``distriploy``, you might want to create a custom tag. It will be used to name the release. E.g.:
 
 .. code:: sh
 
