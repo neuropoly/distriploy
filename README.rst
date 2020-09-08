@@ -8,14 +8,15 @@ This tool can assist you to perform deployment of release artifacts.
 Installation
 ############
 
-distriploy is available on pypi:
+distriploy is available on `pypi <https://pypi.org/project/distriploy/>`_:
 
 .. code:: sh
 
-   python -m pip install --user distriploy
+   pip install distriploy
 
 
 or you can grab a release or clone the repository and use it.
+
 
 
 Configuration
@@ -128,25 +129,17 @@ The file is YAML, it contains an object with the following members:
       Or add it to an environment file *not under revision control*.
 
 
+
 Usage
 #####
 
-The repo should have been configured prior to that, see `configuration`_.
-
-After its `installation`_, distriploy is typically called from your repo's
-root folder using:
+``distriploy`` is typically called from your repo's root folder using:
 
 .. code:: sh
 
-   distriploy
+   distriploy [--revision RELEASE_NAME release]
 
-or:
-
-.. code:: sh
-
-   python -m distriploy
-
-Run it with ``--help`` to get to know the options.
+Run it with `--help` to get to know the options.
 
 Prior to running ``distriploy``, you might want to create a custom tag. It will be used to name the release. E.g.:
 
@@ -156,17 +149,11 @@ Prior to running ``distriploy``, you might want to create a custom tag. It will 
 
 
 
-TODO
-####
-
-- get some use and feedback
-
-
-
 License
 #######
 
 `MIT <LICENSE>`_.
+
 
 
 Releasing
