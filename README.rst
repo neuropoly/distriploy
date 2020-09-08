@@ -27,7 +27,7 @@ root folder using:
 
 .. code:: sh
 
-   distriploy
+   distriploy [--revision RELEASE_NAME release]
 
 The repo should have been configured prior to that, see `configuration`_.
 
