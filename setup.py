@@ -2,13 +2,13 @@
 
 from setuptools import setup
 
-version = "0.16"
+version = "0.17"
 
 with open("README.rst", encoding="utf-8") as fi:
     readme = fi.read()
 
 requirements = [
- "yaml",
+ "pyyaml",
 ]
 
 setup(
@@ -25,7 +25,7 @@ setup(
     entry_points={"console_scripts": ["distriploy = distriploy.__main__:main"]},
     include_package_data=True,
     python_requires=">=3.6",
-    install_requires=[],
+    install_requires=requirements,
     extras_require={
      "osf": ["osfclient"],
     },
