@@ -34,11 +34,11 @@ def get_remote(target_repo, cfg_root):
     res = subprocess.run(cmd, stdout=subprocess.PIPE, cwd=target_repo)
     url = res.stdout.rstrip().decode()
 
-    m = re.match(r"^git@github.com:(?P<repo>\S+)\.git$", url)
+    m = re.match(r"^git@github.com:(?P<repo>\S+)(\.git)?$", url)
     if m is not None:
         return m.group("repo")
 
-    m = re.match(r"^https://github.com/(?P<repo>\S+)\.git$", url)
+    m = re.match(r"^https://github.com/(?P<repo>\S+)(\.git)?$", url)
     if m is not None:
         return m.group("repo")
 
