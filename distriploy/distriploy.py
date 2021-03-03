@@ -55,6 +55,8 @@ def release(repo_path, revision, config):
 
     mod = get_module(release_method_name, "release")
 
+    print("Release on: " + release_method_name)
+
     return mod.release(repo_path, revision, cfg_release)
 
 
@@ -71,6 +73,7 @@ def mirror(repo_path, config, release_meta):
 
         try:
             mod = get_module(mirror_method_name, "mirror")
+            print("Mirroring on: " + mirror)
         except ModuleNotFoundError as e:
             logger.exception("Mirroring plug-in %s (%s) not found, skipping",
              mirror, mirror_method_name)
