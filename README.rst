@@ -14,10 +14,12 @@ distriploy is available on `pypi <https://pypi.org/project/distriploy/>`_:
 
    pip install distriploy
 
+For easier installation and automatic virtual environment management, you can use `pipx <https://github.com/pypa/pipx?tab=readme-ov-file#walkthrough-installing-a-package-and-its-applications-with-pipx>`_ instead:
 
-or you can grab a release or clone the repository and use it.
+.. code:: sh
 
-
+   pipx install distriploy
+   pipx inject distriploy pyyaml
 
 Configuration
 #############
